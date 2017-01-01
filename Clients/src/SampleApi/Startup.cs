@@ -21,8 +21,8 @@ namespace SampleApi
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            Func<string, LogLevel, bool> filter = (scope, level) => 
-                scope.StartsWith("Microsoft.AspNetCore.Authentication") || 
+            Func<string, LogLevel, bool> filter = (scope, level) =>
+                scope.StartsWith("Microsoft.AspNetCore.Authentication") ||
                 scope.StartsWith("Microsoft.AspNetCore.Authorization") ||
                 scope.StartsWith("IdentityServer") ||
                 scope.StartsWith("IdentityModel") ||
@@ -35,7 +35,7 @@ namespace SampleApi
             app.UseCors(policy =>
             {
                 policy.WithOrigins(
-                    "http://localhost:28895", 
+                    "http://localhost:28895",
                     "http://localhost:7017");
 
                 policy.AllowAnyHeader();
@@ -45,7 +45,7 @@ namespace SampleApi
 
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             {
-                Authority = "http://localhost:1941",
+                Authority = "http://localhost:5000",
                 RequireHttpsMetadata = false,
 
                 EnableCaching = false,
